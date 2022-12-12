@@ -17,7 +17,7 @@ public class CoordinateSystem {
 
         if (isZero(point.x)) {
             if (isZero(point.y)) {
-                part = "w środku układu współrzędnych";
+                part = "na środku układu współrzędnych";
             } else {
                 part = "na osi Y";
             }
@@ -37,7 +37,7 @@ public class CoordinateSystem {
             }
         }
 
-        System.out.printf(Locale.US,"Punkt (%d, %d) leży %s", point.x, point.y, part);
+        System.out.printf(Locale.US, "Punkt (%d, %d) leży %s", point.x, point.y, part);
     }
 
     boolean isZero(double number) {
