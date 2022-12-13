@@ -1,11 +1,57 @@
 package pl.javastart.task;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class CoordinateSystem {
 
     // uzupełnij metodę. Używaj scannera przekazanego w parametrze.
     void run(Scanner scanner) {
-        System.out.println("Punkt (5, -3)");
+        scanner.useLocale(Locale.US);
+        System.out.println("Podaj X");
+        int x = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Podaj Y");
+        int y = scanner.nextInt();
+        Point point = new Point(x, y);
+        String textPart = checkQuarter(point);
+
+        System.out.printf(Locale.US, "Punkt (%d, %d) leży %s", point.x, point.y, textPart);
     }
+
+    String checkQuarter(Point point) {
+        String part = "";
+        if (isZero(point.x)) {
+            if (isZero(point.y)) {
+                part = "na środku układu współrzędnych";
+            } else {
+                part = "na osi Y";
+            }
+        } else if (isZero(point.y) && !isZero(point.x)) {
+            part = "na osi X";
+        } else if (lessThanZero(point.x)) {
+            if (lessThanZero(point.y)) {
+                part = "w III ćwiartce układu współrzędnych";
+            } else {
+                part = "w II ćwiartce układu współrzędnych";
+            }
+        } else if (!lessThanZero(point.x)) { //warunek x / y == 0 został już obsłużony, więc w tej części będą brane tylko punkty != 0
+            if (!lessThanZero(point.y)) {
+                part = "w I ćwiartce układu współrzędnych";
+            } else {
+                part = "w IV ćwiartce układu współrzędnych";
+            }
+        }
+
+        return part;
+    }
+
+    boolean isZero(double number) {
+        return (number == 0);
+    }
+
+    boolean lessThanZero(double number) {
+        return (number < 0);
+    }
+
 }
