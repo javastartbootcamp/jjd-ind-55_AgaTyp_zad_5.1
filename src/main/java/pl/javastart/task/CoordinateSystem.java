@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class CoordinateSystem {
-    String part;
+
     // uzupełnij metodę. Używaj scannera przekazanego w parametrze.
     void run(Scanner scanner) {
         scanner.useLocale(Locale.US);
@@ -14,7 +14,13 @@ public class CoordinateSystem {
         System.out.println("Podaj Y");
         int y = scanner.nextInt();
         Point point = new Point(x, y);
+        String textPart = checkQuarter(point);
 
+        System.out.printf(Locale.US, "Punkt (%d, %d) leży %s", point.x, point.y, textPart);
+    }
+
+    String checkQuarter(Point point) {
+        String part = "";
         if (isZero(point.x)) {
             if (isZero(point.y)) {
                 part = "na środku układu współrzędnych";
@@ -37,7 +43,7 @@ public class CoordinateSystem {
             }
         }
 
-        System.out.printf(Locale.US, "Punkt (%d, %d) leży %s", point.x, point.y, part);
+        return part;
     }
 
     boolean isZero(double number) {
